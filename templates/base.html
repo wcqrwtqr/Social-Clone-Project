@@ -1,11 +1,52 @@
 <!DOCTYPE html>
+{% load static  %}
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-</head>
-<body>
-	{% block body_block  %}	
-	{% endblock  %}
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Star Social</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&family=Russo+One&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
+
+
+	</head>
+	<body>
+
+		<nav class="navbar mynav" role='navigation' id='navbar'>
+			<div class="container">
+				<a class='navbar-bran mynav' href="{% url 'Home' %}">Star Social</a>
+
+				<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated  %}	
+					<li><a href="#">Post</a></li>
+					<li><a href="#">Groups</a></li>
+					<li><a href="#">Create Group</a></li>
+					<li><a href="{% url 'accounts:logout'  %}">Log Out</a></li>
+					{% else  %}
+					<li><a href="#">Groups</a></li>
+					<li><a href="{% url 'accounts:login' %}">Log in</a></li>
+					<li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+					{% endif  %}
+				</ul>
+			</div>
+		</nav>
+		<div class="container mycontent">
+
+			{% block body_block  %}	
+			{% endblock  %}
+
+		</div>
+	</body>
 </html>
+
+
+
+
